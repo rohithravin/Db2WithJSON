@@ -1,6 +1,6 @@
 # Db2 with JSON Documents 
 
-In this sample, we will be going over the JSON features in Db2. We will be creating a table where some columns are represented by JSON documents. We will also demonstrate how to store and retrieve such information.
+In this sample, we will be going over the JSON features in Db2. We will be creating a table where some columns are represented by JSON documents and will also demonstrate how to store and retrieve such information.
 
 ## 1. Setting Up Enviroment
 In order to run our code, we will be using `Jupyter Notebook`. If you don't have Jupyter Notebook installed, you can either download it from the Anaconda Distribution or use `pip install`. The links are provided below.
@@ -22,7 +22,7 @@ We will be importing two libraries- `ibm_db` and `ibm_db_dbi`. ibm_db is a libra
 
 ## 3. Establishing a Connection
 
-We need to now establish to our Db2 instance we will be using to store our data for this notebook. For this demo we have been using Db2 on Cloud, however any Db2 instance will work. 
+We need to now establish a connection to our Db2 instance which we will be used to store our data for this notebook. For this demo we have been using Db2 on Cloud, however any Db2 instance will work. 
 
 In order to create a connection with our Db2 instance, we need to aquire the service credentials. For Db2 on Cloud, this can be found on your IBM Cloud account. 
 
@@ -34,13 +34,13 @@ Now that we have our credentials, lets head back to our notebook and input that 
 
 ![Getting Service Credentials](docs/source/images/img-3.png)
 
-Make sure to input the credential values to the corresponding label. If you have successfully connected to your Db2 instance, you will see the success message at the bottom of the picture, if not, and error message will pop up.
+Make sure to input the correct credential values to the corresponding label. If you have successfully connected to your Db2 instance, you will see the success message at the bottom of the picture, if not, and error message will pop up.
 
 ***NOTE: YOU WILL ALSO NEED THE SCHEMA NAME TO CREATE THE TABLE. MAKE SURE YOU ALSO INPUT THAT INFORMATION IN THE `SCHEMA_NAME` LINE*** 
 
 ## 4. Creating a Table
 
-We will now be creating a table to store our data. The data we will be using is the `House_Value` dataset that can be found in the `data` folder. When we create our table using SQL, notice how `BLDGTYPE` and `HOUSESTYLE` have type `BLOB`, while the other column have normally data types. By stating a specific column to be type `BLOB`, we are telling our DBMS that these columns will hold JSON documents. This is the first step in creating a table that has the capability of storing normal data and JSON data.
+We will now be creating a table to store our data. The data we will be using is the `House_Value` dataset that can be found in the `data` folder. When we create our table using SQL, notice how `BLDGTYPE` and `HOUSESTYLE` have type `BLOB`, while the other column have normal data types. By stating a specific column to be type `BLOB`, we are telling our DBMS that these columns will hold JSON documents. This is the first step in creating a table that has the capability of storing normal data and JSON data.
 
 ![Creating Table](docs/source/images/img-4.png)
 
@@ -55,7 +55,7 @@ As you can see in the picture, as we go through each row extracting data from ea
 
 ## 6. Retrieving Data
 
-When trying to extract JSON data from our database we will be using the system call - `SYSTOOLS.BSON2JSON()`. Since we stored our data as BSON, we need to convert it back to JSON so that we are able to understand what we stored. In the picture below, you can see the system call in action and when we print the result of our SQL statement, how the JSON object appears in the table.
+When trying to extract JSON data from our database we will be using the system call - `SYSTOOLS.BSON2JSON()`. Since we stored our data as BSON, we need to convert it back to JSON so that we are able to understand what we stored. In the picture below, you can see the system call in action as well as when we print the result of our SQL statement how the JSON object appears in the table.
 
 ![Getting Data_1](docs/source/images/img-6.png)
 
