@@ -1,6 +1,6 @@
 # Db2 with JSON Documents 
 
-In this sample, we will be going over the JSON features in Db2. We will be creating a table where some columns are represented by JSON documents and will also demonstrate how to store and retrieve such information.
+In this sample, we will be going over the JSON features in Db2. We will be creating a table with some columns represented by JSON documents, and we will also demonstrate how to store and retrieve such information.
 
 ## 1. Setting Up Enviroment
 In order to run our code, we will be using `Jupyter Notebook`. If you don't have Jupyter Notebook installed, you can either download it from the Anaconda Distribution or use `pip install`. The links are provided below.
@@ -12,7 +12,7 @@ After successfully installing Jupyter Notebook, we can open it and create a new 
 
 ## 2. Importing Libraries
 
-Before we start communicating with our database, we need to important certain libraries that will help us communicate. 
+Before we start communicating with our database, we need to import certain libraries that will aid us in communicating. 
 
 ![Importing Libraries](docs/source/images/img-1.png)
 
@@ -22,7 +22,7 @@ We will be importing two libraries- `ibm_db` and `ibm_db_dbi`. ibm_db is a libra
 
 ## 3. Establishing a Connection
 
-We need to now establish a connection to our Db2 instance which we will be used to store our data for this notebook. For this demo we have been using Db2 on Cloud, however any Db2 instance will work. 
+We now need to establish a connection to our Db2 instance which will be used to store our data for this notebook. For this demo we used Db2 on Cloud, however, any Db2 instance will work. 
 
 In order to create a connection with our Db2 instance, we need to aquire the service credentials. For Db2 on Cloud, this can be found on your IBM Cloud account. 
 
@@ -40,7 +40,7 @@ Make sure to input the correct credential values to the corresponding label. If 
 
 ## 4. Creating a Table
 
-We will now be creating a table to store our data. The data we will be using is the `House_Value` dataset that can be found in the `data` folder. When we create our table using SQL, notice how `BLDGTYPE` and `HOUSESTYLE` have type `BLOB`, while the other column have normal data types. By stating a specific column to be type `BLOB`, we are telling our DBMS that these columns will hold JSON documents. This is the first step in creating a table that has the capability of storing normal data and JSON data.
+We will now be creating a table to store our data. The data we will be using is the `House_Value` dataset that can be found in the `data` folder. When we create our table using SQL, notice how `BLDGTYPE` and `HOUSESTYLE` have type `BLOB`, while the other columns have normal data types. By stating a specific column to be type `BLOB`, we are telling our DBMS that these columns will hold JSON documents. This is the first step in creating a table that has the capability of storing normal data and JSON data.
 
 ![Creating Table](docs/source/images/img-4.png)
 
@@ -55,11 +55,11 @@ As you can see in the picture, as we go through each row extracting data from ea
 
 ## 6. Retrieving Data
 
-When trying to extract JSON data from our database we will be using the system call - `SYSTOOLS.BSON2JSON()`. Since we stored our data as BSON, we need to convert it back to JSON so that we are able to understand what we stored. In the picture below, you can see the system call in action as well as when we print the result of our SQL statement how the JSON object appears in the table.
+When trying to extract JSON data from our database we will be using the system call - `SYSTOOLS.BSON2JSON()`. Since we stored our data as BSON, we need to convert it back to JSON so that we are able to understand what we stored. In the picture below, you can see the system call in action as well as how the JSON object appears in the table when we print the result of our SQL statement.
 
 ![Getting Data_1](docs/source/images/img-6.png)
 
-However, sometimes you may only want to retrieve a certain attribute within the JSON object instead of getting the entire objec. For this purpose we will have to use the system call `JSON_VAL()`. This will give us the specific attribute/value that we specify in the JSON object. 
+However, sometimes you may only want to retrieve a certain attribute within the JSON object instead of the entire object. For this purpose, we will have to use the system call `JSON_VAL()`. This will give us the specific attribute/value that we specify in the JSON object. 
 
 ![Getting Data_2](docs/source/images/img-7.png)
 
